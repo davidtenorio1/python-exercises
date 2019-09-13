@@ -12,10 +12,7 @@ print(test)
     
 # 2. Define a function named is_vowel. It should return True if the passed string is a vowel, False otherwise.
 def is_vowel(x):
-    if x in "aeiouAEIOU":
-        return True
-    else:
-        return False
+    return x in "aeiouAEIOU"
 
 user_input = input("Is your input a vowel? Type something:")
 test= is_vowel(user_input)
@@ -23,10 +20,7 @@ print(test)
 
 # 3. Define a function named is_consonant. It should return True if the passed string is a consonant, False otherwise. Use your is_vowel function to accomplish this.
 def is_constant(x):
-    if x not in "aeiouAEIOU":
-        return True
-    else:
-        return False
+    return x not in "aeiouAEIOU"
 
 user_input = input("Is your input a constant? Type something:")
 test= is_constant(user_input)
@@ -36,8 +30,7 @@ print(test)
 def capitalize_if_constant (x):
     if (x[0]) in "AEIOUaeiou":
         return x
-    else:
-        return x.capitalize()
+    return x.capitalize()
 
 user_input = input("Type something and I may or may not capitalize it:")
 test= capitalize_if_constant(user_input)
@@ -70,7 +63,7 @@ print(f'The price after discount is {price_after_discount}. What a deal!')
 # 7. Define a function named handle_commas. It should accept a string that is a number that contains commas in it as input, and return a number as output.
 user_input = input("Enter a number with commas and I will remove the commas:")
 def handle_commas(s):
-    return s.replace(",", "")
+    return float(s.replace(",", ""))
 no_commas = handle_commas(user_input)
 print(no_commas)
 
@@ -101,16 +94,21 @@ def remove_vowels(word):
     return ''.join(letters)
 
 # 10. Define a function named normalize_name. It should accept a string and return a valid python identifier, that is:
+def normalize_name(name):
+    for c in ['!', '@', '#', '$', '%', '^', '&', '*']:
+            name = name.replace(c, "")
+    name = name.strip()
+    name = name.lower()
+    name = name.replace(" ", "_")
+    return name
 
 # 11. Write a function named cumsum that accepts a list of numbers and returns a list that is the cumulative sum of the numbers in the list.
 
-def cumsum(lists):
-    total = []
-    length = len(lists)
-    total = [sum(lists[0 + 1]) for n in range(0,length)]
-    return total
-lists = [1,2,3]
-print(cumsum(lists))
+def cumsum(xs):
+    sums = [xs[0]]
+    for x in xs[1:]:
+        sums.append(sums[-1] + x)
+    return sums
 
 # Bonus 1. Create a function named twelveto24. It should accept a string in the format 10:45am or 4:30pm and return a string that is the representation of the time in a 24-hour format. Bonus write a function that does the opposite.
 
