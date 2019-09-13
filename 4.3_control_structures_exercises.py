@@ -182,6 +182,56 @@ while i <= user_number_int:
     print(i, i**2, i**3)
     i+=1
 
+#E5.
+""" Convert given number grades into letter grades.
+Prompt the user for a numerical grade from 0 to 100.
+Display the corresponding letter grade.
+Prompt the user to continue.
+Assume that the user will enter valid integers for the grades.
+The application should only continue if the user agrees to.
+Grade Ranges:
+A : 100 - 88
+B : 87 - 80
+C : 79 - 67
+D : 66 - 60
+F : 59 - 0
+Bonus
+Edit your grade ranges to include pluses and minuses (ex: 99-100 = A+). """
+while True:
+    num_grade=input("Please enter a grade between 0 and 100")
+    num_grade=int(num_grade)
+    if num_grade>=88:
+        print('A')
+    elif num_grade>=80:
+        print('B')
+    elif num_grade>=67:
+        print('C')
+    elif num_grade>=60:
+        print('D') 
+    else:
+        print('F')
+    prompt_user_continue=input("Would you like to continue? Y/N") 
+    if prompt_user_continue.upper()=="N":
+        break
+
+#6
+""" Create a list of dictionaries where each dictionary represents a book that you have read. Each dictionary in the list should have the keys title, author, and genre. Loop through the list and print out information about each book.
+Prompt the user to enter a genre, then loop through your books list and print out the titles of all the books in that genre. """
+
+book_list=[{'title':"Lamb",'author':"Christopher Moore",'genre':"fiction"},
+{'title':"The Lean Startup",'author':"Eric Ries",'genre':"business"},{'title':"Devil in a White City",'author':"Eric Larson",'genre':"True Crime"},{'title':"Tom Sawyer",'author':"Mark Twain",'genre':"fiction"}]
+for book in book_list:
+    print("The book title is: "+book['title'])
+    print("The book author is: "+book['author'])
+    print("The book genre is: "+book['genre'])
+
+
+#Exercise 6.a
+genre_filter=input("Please enter a genre")
+for book in book_list:
+    if book['genre']==genre_filter:
+        print("The book title is: "+book['title'])
+        print("The book author is: "+book['author'])
 
 
 
