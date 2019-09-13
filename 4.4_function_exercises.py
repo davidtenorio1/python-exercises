@@ -55,9 +55,66 @@ def calculate_tip_amount (x,y):
 print(calculate_tip_amount(total_in_dollars,tip_percentage))
 
 # 6. Define a function named apply_discount. It should accept a original price, and a discount percentage, and return the price after the discount is applied.
+print("I will calculate the price after discount")
+price_input = input("Enter the original price:")
+price = float(price_input)
+discount_percentage = input("Enter the discount percentage from 0 to 1:")
+discount = float(discount_percentage)
+
+def apply_discount(original_price,discount_percentage):
+    return original_price * (1-discount_percentage)
+
+price_after_discount = apply_discount(price,discount)
+print(f'The price after discount is {price_after_discount}. What a deal!')
 
 # 7. Define a function named handle_commas. It should accept a string that is a number that contains commas in it as input, and return a number as output.
+user_input = input("Enter a number with commas and I will remove the commas:")
+def handle_commas(s):
+    return s.replace(",", "")
+no_commas = handle_commas(user_input)
+print(no_commas)
 
 # 8. Define a function named get_letter_grade. It should accept a number and return the letter grade associated with that number (A-F).
+user_input = input("Enter your numberic grade and I will convert to a letter grade:")
+user_grade_int = int(user_input)
+def get_letter_grade(s):
+    if s >= 90:
+        return "A"
+    elif s>= 80:
+        return "B"
+    elif s>=70:
+        return "C"
+    elif s>60:
+        return "D"
+    else:
+        return "F"
+print(get_letter_grade(user_grade_int))
 
 # 9. Define a function named remove_vowels that accepts a string and returns a string with all the vowels removed.
+print("I am the vowel monster and I eat all vowels!")
+user_input = input("Enter your word:")
+def remove_vowels(word):
+    letters = []
+    for char in word:
+        if char not in 'aeiouAEIOU':
+            letters.append(char)
+    return ''.join(letters)
+
+# 10. Define a function named normalize_name. It should accept a string and return a valid python identifier, that is:
+
+# 11. Write a function named cumsum that accepts a list of numbers and returns a list that is the cumulative sum of the numbers in the list.
+
+def cumsum(lists):
+    total = []
+    length = len(lists)
+    total = [sum(lists[0 + 1]) for n in range(0,length)]
+    return total
+lists = [1,2,3]
+print(cumsum(lists))
+
+# Bonus 1. Create a function named twelveto24. It should accept a string in the format 10:45am or 4:30pm and return a string that is the representation of the time in a 24-hour format. Bonus write a function that does the opposite.
+
+
+# Bonus 2. Create a function named col_index. It should accept a spreadsheet column name, and return the index number of the column.
+
+
