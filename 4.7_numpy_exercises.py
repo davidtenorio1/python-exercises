@@ -37,6 +37,9 @@ print(a_zscore)
 
 
 
+
+
+
 ## Setup 1
 a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
@@ -74,6 +77,9 @@ evens_in_a = []
 for n in a:
     if n % 2 == 0:
         evens_in_a.append(n)
+
+
+
 
 
 
@@ -178,6 +184,9 @@ print(np.reshape(b, (6,1)))
 
 
 
+
+
+
 ## Setup 3
 c = [
     [1, 2, 3],
@@ -221,6 +230,9 @@ print(np.prod(c_product))
 
 
 
+
+
+
 ## Setup 4
 d = [
     [90, 30, 45, 0, 120, 180],
@@ -230,25 +242,36 @@ d = [
 d = np.array(d)
 
 # Exercise 1 - Find the sine of all the numbers in d
+print(np.sin(d))
 
 # Exercise 2 - Find the cosine of all the numbers in d
+print(np.cos(d))
 
 # Exercise 3 - Find the tangent of all the numbers in d
+print(np.tan(d))
 
 # Exercise 4 - Find all the negative numbers in d
+d_negatives = d[d < 0]
+print(d_negatives)
 
 # Exercise 5 - Find all the positive numbers in d
+d_positives = d[ d> 0]
+print(d_positives)
 
 # Exercise 6 - Return an array of only the unique numbers in d.
+print(np.unique(d))
 
 # Exercise 7 - Determine how many unique numbers there are in d.
+print(len(np.unique(d)))
 
 # Exercise 8 - Print out the shape of d.
+print(np.shape(d))
 
 # Exercise 9 - Transpose and then print out the shape of d.
+print(np.transpose(d))
 
 # Exercise 10 - Reshape d into an array of 9 x 2
-
+print(np.reshape(d,(9,2)))
 
 
 
