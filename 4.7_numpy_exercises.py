@@ -272,7 +272,7 @@ print(len(np.unique(d)))
 print(np.shape(d))
 
 # Exercise 9 - Transpose and then print out the shape of d.
-print(np.transpose(d))
+print(np.transpose(d).shape)
 
 # Exercise 10 - Reshape d into an array of 9 x 2
 print(np.reshape(d,(9,2)))
