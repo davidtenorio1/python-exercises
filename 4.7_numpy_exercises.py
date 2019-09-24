@@ -30,7 +30,7 @@ a_centered = a - a.mean()
 print(a_centered)
 
 # 7. Calculate the z-score for each data point. 
-a_zscore = (a - a.mean()) / a.std()
+a_zscore = a_centered / a.std()
 print(a_zscore)
 
 
@@ -60,23 +60,27 @@ mean_of_a = sum(a)/len(a)
 product_of_a = a[0]
 for n in a:
     product_of_a = product_of_a * n
+print(product_of_a)
 
 # Exercise 6 - Make a variable named squares_of_a. It should hold each number in a squared like [1, 4, 9, 16, 25...]
 squares_of_a = []
 for n in a:
     squares_of_a.append(n**2)
+print(squares_of_a)
 
 # Exercise 7 - Make a variable named odds_in_a. It should hold only the odd numbers
 odds_in_a = []
 for n in a:
     if n % 2 != 0:
         odds_in_a.append(n)
+print(odds_in_a)
 
 # Exercise 8 - Make a variable named evens_in_a. It should hold only the evens.
 evens_in_a = []
 for n in a:
     if n % 2 == 0:
         evens_in_a.append(n)
+print(evens_in_a)
 
 
 
