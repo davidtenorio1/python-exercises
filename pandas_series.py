@@ -1,6 +1,7 @@
 # 1.) Use pandas to create a Series from the following data:
 import pandas as pd
 import matplotlib.pyplot as plt
+import numpy as np
 
 #["kiwi", "mango", "strawberry", "pineapple", "gala apple", "honeycrisp apple", "tomato", "watermelon", "honeydew", "kiwi", "kiwi", "kiwi", "mango", "blueberry", "blackberry", "gooseberry", "papaya"]
 # a. Name the variable that holds the series fruits.
@@ -109,23 +110,21 @@ exam_scores = pd.Series([60, 86, 75, 62, 93, 71, 60, 83, 95, 78, 65, 72, 69, 81,
 print(exam_scores.min())
 print(exam_scores.max())
 print(exam_scores.mean())
+print(exam_scores.median())
 
 #Plot a histogram of the scores.
 plt.hist(exam_scores)
 
 #Convert each of the numbers above into a letter grade. For example, 86 should be a 'B' and 95 should be an 'A'.
-def letter_grade_converter(grades):
-    letter_grades = []
-    for grade in grades:
+def letter_grade_converter(grade):
         if grade >= 90:
-            letter_grades.append('A')
+            return ('A')
         elif grade >= 80:
-            letter_grades.append('B')
+            return ('B')
         elif grade >= 70:
-            letter_grades.append('C')
+            return('C')
         else:
-            letter_grades.append('F')
-    return letter_grades 
+            return('F')
 
 print(letter_grade_converter(exam_scores))
         
@@ -169,8 +168,94 @@ print(upper_series)
 print(word.value_counts())
 bar_values = word.value_counts()[0:7]
 bar_values.plot.bar()
+plt.xlabel('Letters')
+plt.ylabel('Frequency')
+plt.show()
 
 
+
+
+
+
+#______________________________________________________________________________________
+from pydataset import data
+#All the datasets loaded from the pydataset library will be pandas dataframes.
+
+# 1.) Copy the code from the lesson to create a dataframe full of student grades.
+
+np.random.seed(123)
+
+students = ['Sally', 'Jane', 'Suzie', 'Billy', 'Ada', 'John', 'Thomas',
+            'Marie', 'Albert', 'Richard', 'Isaac', 'Alan']
+
+# randomly generate scores for each student for each subject
+# note that all the values need to have the same length here
+math_grades = np.random.randint(low=60, high=100, size=len(students))
+english_grades = np.random.randint(low=60, high=100, size=len(students))
+reading_grades = np.random.randint(low=60, high=100, size=len(students))
+
+df = pd.DataFrame({'name': students,
+                   'math': math_grades,
+                   'english': english_grades,
+                   'reading': reading_grades})
+
+
+#Create a column named passing_english that indicates whether each student has a passing grade in reading.
+df['passing_english'] = df.english >= 70
+
+#Sort the english grades by the passing_english column. How are duplicates handled?
+df.sort_values(by='passing_english') #Duplicates are sorted by index number.
+
+
+#Sort the english grades first by passing_english and then by student name. All the students that are failing english should be first, and within the students that are failing english they should be ordered alphabetically. The same should be true for the students passing english. (Hint: you can pass a list to the .sort_values method)
+df.sort_values(['passing_english', 'name'], ascending=[True, True])
+
+#Sort the english grades first by passing_english, and then by the actual english grade, similar to how we did in the last step.
+df.sort_values(['passing_english', 'english'], ascending=[True, True])
+
+#Calculate each students overall grade and add it as a column on the dataframe. The overall grade is the average of the math, english, and reading grades.
+df['overall_grade'] = (df.math + df.reading + df.english) / 3
+
+
+
+
+
+
+
+
+
+# 2.) Load the mpg dataset. Read the documentation for the dataset and use it for the following questions:
+mpg = data('mpg')
+#How many rows and columns are there?
+mpg.describe #234 rows and 11 columns
+
+#What are the data types of each column?
+mpg.dtypes
+
+#Rename the cty column to city.
+mpg.rename(columns={'cty':'city'}, inplace = True)
+
+#Rename the hwy column to highway.
+mpg.rename(columns={'hwy':'highway'}, inplace = True)
+
+#Do any cars have better city mileage than highway mileage?
+better_city = mpg[mpg.city > mpg.highway] #No cars have better city mileage than highway mileage
+print(better_city)
+
+#Create a column named mileage_difference this column should contain the difference between highway and city mileage for each car.
+mpg['mileage_difference'] = (mpg.highway - mpg.city)
+
+
+#Which car (or cars) has the highest mileage difference?
+mpg.sort_values('mileage_difference', ascending = False)
+
+#Which compact class car has the lowest highway mileage? The best?
+
+
+#Create a column named average_mileage that is the mean of the city and highway mileage.
+
+
+#Which dodge car has the best average mileage? The worst?
 
 
 
