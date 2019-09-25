@@ -98,19 +98,42 @@ plt.show()
 
 
 
+
+
+
 # 3.) Use pandas to create a Series from the following exam scores:
 #[60, 86, 75, 62, 93, 71, 60, 83, 95, 78, 65, 72, 69, 81, 96, 80, 85, 92, 82, 78]
 exam_scores = pd.Series([60, 86, 75, 62, 93, 71, 60, 83, 95, 78, 65, 72, 69, 81, 96, 80, 85, 92, 82, 78])
 
 #What is the minimum exam score? The max, mean, median?
 print(exam_scores.min())
+print(exam_scores.max())
+print(exam_scores.mean())
 
 #Plot a histogram of the scores.
+plt.hist(exam_scores)
 
 #Convert each of the numbers above into a letter grade. For example, 86 should be a 'B' and 95 should be an 'A'.
+def letter_grade_converter(grades):
+    letter_grades = []
+    for grade in grades:
+        if grade >= 90:
+            letter_grades.append('A')
+        elif grade >= 80:
+            letter_grades.append('B')
+        elif grade >= 70:
+            letter_grades.append('C')
+        else:
+            letter_grades.append('F')
+    return letter_grades 
 
+print(letter_grade_converter(exam_scores))
+        
 #Write the code necessary to implement a curve. I.e. that grade closest to 100 should be converted to a 100, and that many points should be given to every other score as well.
-
+highest_grade = exam_scores.max()
+curve = 100 - highest_grade
+curved_grade_function = lambda x : x + curve
+print(exam_scores.apply(curved_grade_function))
 
 
 
@@ -120,14 +143,27 @@ print(exam_scores.min())
 
 # 4.) Use pandas to create a Series from the following string:
 #'hnvidduckkqxwymbimkccexbkmqygkxoyndmcxnwqarhyffsjpsrabtjzsypmzadfavyrnndndvswreauxovncxtwzpwejilzjrmmbbgbyxvjtewqthafnbkqplarokkyydtubbmnexoypulzwfhqvckdpqtpoppzqrmcvhhpwgjwupgzhiofohawytlsiyecuproguy'
+original = ('hnvidduckkqxwymbimkccexbkmqygkxoyndmcxnwqarhyffsjpsrabtjzsypmzadfavyrnndndvswreauxovncxtwzpwejilzjrmmbbgbyxvjtewqthafnbkqplarokkyydtubbmnexoypulzwfhqvckdpqtpoppzqrmcvhhpwgjwupgzhiofohawytlsiyecuproguy')
+def split(word): 
+    return [char for char in word]
+new_list = split(original)  
+word = pd.Series(new_list)
+print(word)
 
 #What is the most frequently occuring letter? Least frequently occuring?
+print(word.value_counts().idxmax())
+print(word.value_counts().idxmin())
 
 #How many vowels are in the list?
+vowels_in_word = (word.apply(number_of_vowels))
+print(vowels_in_word.sum())
 
 #How many consonants are in the list?
+print(word.count() - vowels_in_word.sum())
 
 #Create a series that has all of the same letters, but uppercased
+upper_series = word.str.upper()
+print(upper_series)
 
 #Create a bar plot of the frequencies of the 6 most frequently occuring letters.
 
