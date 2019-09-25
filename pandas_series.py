@@ -166,7 +166,9 @@ upper_series = word.str.upper()
 print(upper_series)
 
 #Create a bar plot of the frequencies of the 6 most frequently occuring letters.
-
+print(word.value_counts())
+bar_values = word.value_counts()[0:7]
+bar_values.plot.bar()
 
 
 
