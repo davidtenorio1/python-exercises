@@ -178,6 +178,14 @@ plt.show()
 
 
 #______________________________________________________________________________________
+
+
+
+
+
+
+
+
 from pydataset import data
 #All the datasets loaded from the pydataset library will be pandas dataframes.
 
@@ -297,7 +305,7 @@ fast_hoppers = fast_animals[mammals.hoppers == True]
 fast_hoppers_count = fast_hoppers.hoppers.count()
 print('There are',total_hoppers, 'total hoppers. The median speed of all animals is',median_speed,'. Of the total hoppers,',fast_hoppers_count,'are above the median speed.')
 print('This is', (fast_hoppers_count/total_hoppers *100),'percent.')
-
+print('This is', (fast_hoppers_count/len(mammals) *100),'percent.')
 
 
 
