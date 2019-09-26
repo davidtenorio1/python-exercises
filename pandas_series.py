@@ -200,6 +200,7 @@ df = pd.DataFrame({'name': students,
                    'reading': reading_grades})
 
 
+
 #Create a column named passing_english that indicates whether each student has a passing grade in reading.
 df['passing_english'] = df.english >= 70
 
@@ -227,7 +228,7 @@ df['overall_grade'] = (df.math + df.reading + df.english) / 3
 # 2.) Load the mpg dataset. Read the documentation for the dataset and use it for the following questions:
 mpg = data('mpg')
 #How many rows and columns are there?
-mpg.describe #234 rows and 11 columns
+mpg.shape
 
 #What are the data types of each column?
 mpg.dtypes
@@ -250,12 +251,55 @@ mpg['mileage_difference'] = (mpg.highway - mpg.city)
 mpg.sort_values('mileage_difference', ascending = False)
 
 #Which compact class car has the lowest highway mileage? The best?
-
+mpg.sort_values(['class', 'highway'], ascending = [True, False])
+mpg.sort_values(['class', 'highway'], ascending = [True, True])
 
 #Create a column named average_mileage that is the mean of the city and highway mileage.
-
+mpg['average_mileage'] = (mpg.highway + mpg.city) /2
 
 #Which dodge car has the best average mileage? The worst?
+mpg.sort_values(['manufacturer', 'average_mileage'], ascending = [True, False])
+mpg.sort_values(['manufacturer', 'average_mileage'], ascending = [True, True])
+
+
+
+
+
+
+
+
+# 3.) Load the Mammals dataset. Read the documentation for it, and use the data to answer these questions:
+mammals = data('Mammals')
+#How many rows and columns are there?
+mammals.shape
+
+#What are the data types?
+mammals.dtypes
+
+#Summarize the dataframe with .info and .describe
+mammals.info
+mammals.describe
+
+#What is the the weight of the fastest animal?
+fastest_animal = mammals.speed.idxmax()
+print("The fastest animal is" , fastest_animal , "and its weight is ", mammals.weight[fastest_animal])
+
+#What is the overal percentage of specials?
+mammals.specials.value_counts(True)
+special_mammals = mammals[mammals.specials == True]
+print('The overall percentage of specials is', special_mammals.specials.count() / len(mammals) * 100)
+
+#How many animals are hoppers that are above the median speed? What percentage is this?
+total_hoppers = mammals.hoppers.sum()
+median_speed = mammals.speed.median()
+fast_animals = mammals[mammals.speed > median_speed]
+fast_hoppers = fast_animals[mammals.hoppers == True]
+fast_hoppers_count = fast_hoppers.hoppers.count()
+print('There are',total_hoppers, 'total hoppers. The median speed of all animals is',median_speed,'. Of the total hoppers,',fast_hoppers_count,'are above the median speed.')
+print('This is', (fast_hoppers_count/total_hoppers *100),'percent.')
+
+
+
 
 
 
